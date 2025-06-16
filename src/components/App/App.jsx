@@ -4,9 +4,13 @@ import { useEffect } from 'react';
 import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import { fetchContactsThunk } from '../../redux/contactsOps';
 import { useDispatch } from 'react-redux';
-import HomePage from '../../pages/Homepage/HomePage';
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
+import { lazy, Suspense } from 'react';
+import Header from '../Header/Header';
+const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
+const RegistrationPage = lazy(() =>
+  import('../../pages/RegistrationPage/RegistrationPage')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +20,7 @@ function App() {
   return (
     <>
       <div className={styles.appContent}>
-        <h1>Phonebook</h1>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />

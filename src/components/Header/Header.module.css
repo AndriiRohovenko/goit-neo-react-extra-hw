@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  height: auto;
+  position: relative;
+  background-color: #f2f4f7;
+}
+
+@media (max-width: 600px) {
+  .header {
+    position: relative;
+  }
+}
+
+.navigationWrapper {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+}
+
+.active {
+  color: rgb(177, 57, 57);
+}
