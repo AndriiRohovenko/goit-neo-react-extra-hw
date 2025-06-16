@@ -1,10 +1,12 @@
 import styles from './App.module.css';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-import ContactForm from '../ContactForm/ContactForm';
-import SearchBox from '../SearchBox/SearchBox';
-import ContactList from '../ContactList/ContactList';
+import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import { fetchContactsThunk } from '../../redux/contactsOps';
 import { useDispatch } from 'react-redux';
+import HomePage from '../../pages/Homepage/HomePage';
+import LoginPage from '../../pages/LoginPage/LoginPage';
+import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,9 +17,13 @@ function App() {
     <>
       <div className={styles.appContent}>
         <h1>Phonebook</h1>
-        <ContactForm />
-        <SearchBox />
-        <ContactList />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="*" element={<div>404</div>} />
+        </Routes>
       </div>
     </>
   );
