@@ -6,7 +6,6 @@ function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.navigationWrapper}>
-          <h1>Phonebook</h1>
           <NavLink
             to={'/'}
             className={({ isActive }) =>
@@ -15,14 +14,24 @@ function Header() {
           >
             Home
           </NavLink>
-          <NavLink
-            to={'/contacts'}
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-            }
-          >
-            Contacts
-          </NavLink>
+          <div className={styles.rightNavigationWrapper}>
+            <NavLink
+              to={'/register'}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              SignUp
+            </NavLink>
+            <NavLink
+              to={'/login'}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              Log In
+            </NavLink>
+          </div>
         </div>
       </header>
     </>

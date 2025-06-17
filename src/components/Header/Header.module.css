@@ -1,7 +1,7 @@
 .header {
-  display: flex;
+  /* display: flex; */
   padding: 0 20px;
-  align-items: center;
+  /* align-items: center; */
   height: auto;
   position: relative;
   background-color: #f2f4f7;
@@ -15,10 +15,16 @@
 
 .navigationWrapper {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
+  justify-content: space-between;
   gap: 10px;
   padding: 20px;
   /* margin: 0 auto; */
+}
+
+.rightNavigationWrapper {
+  display: flex;
+  gap: 20px;
 }
 
 .navLink {
