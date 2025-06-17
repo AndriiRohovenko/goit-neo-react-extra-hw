@@ -4,7 +4,7 @@ import {
   addContactThunk,
   deleteContactThunk,
 } from './contactsOps';
-import { selectNameFilter } from './filtersSlice';
+import { selectNameFilter } from '../filtersSlice';
 
 const handlePending = state => {
   state.isLoading = true;

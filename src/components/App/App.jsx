@@ -2,7 +2,7 @@ import styles from './App.module.css';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import ContactsPage from '../../pages/ContactsPage/ContactsPage';
-import { fetchContactsThunk } from '../../redux/contactsOps';
+import { fetchContactsThunk } from '../../redux/contacts/contactsOps';
 import { useDispatch } from 'react-redux';
 import { lazy, Suspense } from 'react';
 import Header from '../Header/Header';
