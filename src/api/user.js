@@ -1,34 +1,36 @@
 import apiClient from './apiClient';
 
-export const getContacts = async () => {
+export const getUserInfo = async () => {
   const { data } = await apiClient({
-    url: `/contacts`,
+    url: `/current`,
     method: 'get',
   });
   return data;
 };
 
-export const getContactById = async id => {
+export const login = async body => {
   const { data } = await apiClient({
-    url: `/contacts/${id}`,
-    method: 'get',
-  });
-  return data;
-};
-
-export const addContact = async body => {
-  const { data } = await apiClient({
-    url: `/contacts`,
+    url: `users/login`,
     method: 'post',
     data: body,
   });
   return data;
 };
 
-export const deleteContactById = async id => {
+export const signUp = async body => {
   const { data } = await apiClient({
-    url: `/contacts/${id}`,
-    method: 'delete',
+    url: `users/signup`,
+    method: 'post',
+    data: body,
+  });
+  return data;
+};
+
+export const logOut = async body => {
+  const { data } = await apiClient({
+    url: `users/logout`,
+    method: 'post',
+    data: body,
   });
   return data;
 };

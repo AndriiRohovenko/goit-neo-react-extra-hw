@@ -3,6 +3,7 @@ import styles from './LoginPage.module.css';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
+import { login } from '../../api/user';
 
 const LoginPage = () => {
   const defaultObj = { email: '', password: '' };
@@ -21,7 +22,10 @@ const LoginPage = () => {
 
   const handleLogin = (user, { resetForm }) => {
     // dispatch(addContactThunk(contact));
+
     console.log(user);
+    const res = login(user);
+    console.log(res);
     resetForm();
   };
 
