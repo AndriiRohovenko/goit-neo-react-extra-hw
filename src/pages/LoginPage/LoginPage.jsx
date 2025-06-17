@@ -16,17 +16,7 @@ const LoginPage = () => {
       .max(50, 'Email must not exceed 50 characters')
       .required('Email is required'),
 
-    password: Yup.string()
-      .min(8, 'Password must be at least 8 characters')
-      .max(50, 'Password must not exceed 50 characters')
-      .matches(/[a-z]/, 'Password must contain at least one lowercase letter')
-      .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
-      .matches(/\d/, 'Password must contain at least one number')
-      .matches(
-        /[!@#$%^&*(),.?":{}|<>]/,
-        'Password must contain at least one special character'
-      ) // Optional for strong password
-      .required('Password is required'),
+    password: Yup.string().required('Password is required'),
   });
 
   const handleLogin = (user, { resetForm }) => {
