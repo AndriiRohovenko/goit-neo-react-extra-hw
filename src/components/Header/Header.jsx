@@ -1,7 +1,12 @@
 import styles from './Header.module.css';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectLoggedIn } from '../../redux/auth/authSlice';
+import UserInfo from '../UserInfo/UserInfo';
+import Authorization from '../Authorization/Authorization';
 
 function Header() {
+  const isLoggedIn = useSelector(selectLoggedIn);
   return (
     <>
       <header className={styles.header}>
@@ -14,24 +19,7 @@ function Header() {
           >
             Home
           </NavLink>
-          <div className={styles.rightNavigationWrapper}>
-            <NavLink
-              to={'/register'}
-              className={({ isActive }) =>
-                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-              }
-            >
-              SignUp
-            </NavLink>
-            <NavLink
-              to={'/login'}
-              className={({ isActive }) =>
-                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-              }
-            >
-              Log In
-            </NavLink>
-          </div>
+          {isLoggedIn ? <UserInfo /> : <Authorization />}
         </div>
       </header>
     </>

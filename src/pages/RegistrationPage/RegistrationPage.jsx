@@ -2,9 +2,12 @@ import styles from './RegistrationPage.module.css';
 
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import { signUpActionThunk } from '../../redux/auth/authOps';
 
 const RegistrationPage = () => {
+  const dispatch = useDispatch();
   const defaultObj = { name: '', email: '', password: '' };
   const nameFieldId = useId();
   const emailFieldId = useId();
@@ -35,8 +38,7 @@ const RegistrationPage = () => {
   });
 
   const handleRegistration = (user, { resetForm }) => {
-    // dispatch(addContactThunk(contact));
-    console.log(user);
+    dispatch(signUpActionThunk(user));
     resetForm();
   };
   return (

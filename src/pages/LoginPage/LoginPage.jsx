@@ -3,9 +3,12 @@ import styles from './LoginPage.module.css';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
-import { login } from '../../api/user';
+
+import { useDispatch } from 'react-redux';
+import { loginActionThunk } from '../../redux/auth/authOps';
 
 const LoginPage = () => {
+  const dispatch = useDispatch();
   const defaultObj = { email: '', password: '' };
   const emailFieldId = useId();
   const passwordFieldId = useId();
@@ -21,11 +24,7 @@ const LoginPage = () => {
   });
 
   const handleLogin = (user, { resetForm }) => {
-    // dispatch(addContactThunk(contact));
-
-    console.log(user);
-    const res = login(user);
-    console.log(res);
+    dispatch(loginActionThunk(user));
     resetForm();
   };
 
