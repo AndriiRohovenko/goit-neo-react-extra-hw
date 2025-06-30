@@ -4,7 +4,7 @@ import {
   //   fetchUserInfoThunk,
   loginActionThunk,
   signUpActionThunk,
-  //   logOutActionThunk,
+  logOutActionThunk,
 } from './authOps';
 
 const handlePending = state => {
@@ -48,14 +48,18 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(loginActionThunk.rejected, handleRejected);
+      .addCase(loginActionThunk.rejected, handleRejected)
 
-    //   .addCase(deleteContactThunk.pending, handlePending)
-    //   .addCase(deleteContactThunk.fulfilled, (state, action) => {
-    //     const index = state.items.findIndex(task => task.id === action.payload);
-    //     state.items.splice(index, 1);
-    //   })
-    //   .addCase(deleteContactThunk.rejected, handleRejected);
+      .addCase(logOutActionThunk.pending, handlePending)
+      .addCase(logOutActionThunk.fulfilled, state => {
+        state.isLoggedIn = false;
+        state.user = {
+          name: '',
+          email: '',
+        };
+        state.token = null;
+      })
+      .addCase(logOutActionThunk.rejected, handleRejected);
   },
 });
 

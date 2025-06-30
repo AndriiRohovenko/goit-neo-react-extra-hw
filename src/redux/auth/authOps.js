@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getUserInfo, login, signUp, logOut } from '../../api/user';
+import { setToken, removeToken } from '../../api/apiClient';
 
 export const fetchUserInfoThunk = createAsyncThunk(
   'auth/fetchUserInfo',
@@ -17,8 +18,9 @@ export const loginActionThunk = createAsyncThunk(
   'auth/login',
   async (body, thunkAPI) => {
     try {
-      const data = await login(body);
-      return data;
+      const response = await login(body);
+      setToken(response.token);
+      return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -29,8 +31,9 @@ export const signUpActionThunk = createAsyncThunk(
   'auth/signUp',
   async (body, thunkAPI) => {
     try {
-      const data = await signUp(body);
-      return data;
+      const response = await signUp(body);
+      setToken(response.token);
+      return response;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -41,8 +44,8 @@ export const logOutActionThunk = createAsyncThunk(
   'auth/logOut',
   async (body, thunkAPI) => {
     try {
-      const data = await logOut(body);
-      return data;
+      await logOut(body);
+      return removeToken();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }

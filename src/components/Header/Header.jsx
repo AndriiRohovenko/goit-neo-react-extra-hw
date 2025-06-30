@@ -19,6 +19,16 @@ function Header() {
           >
             Home
           </NavLink>
+          {isLoggedIn && (
+            <NavLink
+              to={'/contacts'}
+              className={({ isActive }) =>
+                isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
+              }
+            >
+              Contacts
+            </NavLink>
+          )}
           {isLoggedIn ? <UserInfo /> : <Authorization />}
         </div>
       </header>
