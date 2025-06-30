@@ -8,7 +8,6 @@ export const fetchUserInfoThunk = createAsyncThunk(
     try {
       const authState = thunkAPI.getState().auth;
       const localToken = authState.token;
-      console.log(localToken);
       setToken(localToken);
       const data = await getUserInfo();
 
