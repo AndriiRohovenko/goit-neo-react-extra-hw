@@ -2,7 +2,7 @@ import { apiClient } from './apiClient';
 
 export const getUserInfo = async () => {
   const { data } = await apiClient({
-    url: `/current`,
+    url: `users/current`,
     method: 'get',
   });
   return data;

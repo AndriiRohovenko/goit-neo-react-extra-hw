@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import {
-  //   fetchUserInfoThunk,
+  fetchUserInfoThunk,
   loginActionThunk,
   signUpActionThunk,
   logOutActionThunk,
@@ -27,6 +27,7 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isLoading: false,
     error: null,
+    isRefreshing: false,
   },
   extraReducers: builder => {
     builder
@@ -59,7 +60,18 @@ const authSlice = createSlice({
         };
         state.token = null;
       })
-      .addCase(logOutActionThunk.rejected, handleRejected);
+      .addCase(logOutActionThunk.rejected, handleRejected)
+
+      .addCase(fetchUserInfoThunk.pending, state => {
+        state.isLoading = true;
+        state.isRefreshing = true;
+      })
+      .addCase(fetchUserInfoThunk.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.user = action.payload;
+        state.isRefreshing = false;
+      })
+      .addCase(fetchUserInfoThunk.rejected, handleRejected);
   },
 });
 
@@ -67,3 +79,4 @@ export const authReducer = authSlice.reducer;
 
 export const selectLoggedIn = state => state.auth.isLoggedIn;
 export const selectUser = state => state.auth.user;
+export const selectIsRefreshing = state => state.auth.isRefreshing;

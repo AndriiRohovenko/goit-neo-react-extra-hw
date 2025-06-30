@@ -3,8 +3,11 @@ import { Route, Routes } from 'react-router-dom';
 
 import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import Header from '../Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserInfoThunk } from '../../redux/auth/authOps';
+import { selectIsRefreshing } from '../../redux/auth/authSlice';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
@@ -13,18 +16,27 @@ const RegistrationPage = lazy(() =>
 );
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  useEffect(() => {
+    dispatch(fetchUserInfoThunk());
+  }, [dispatch]);
   return (
     <>
-      <div className={styles.appContent}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="*" element={<div>404</div>} />
-        </Routes>
-      </div>
+      {isRefreshing ? (
+        <p>Refreshing User</p>
+      ) : (
+        <div className={styles.appContent}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route path="/contacts" element={<ContactsPage />} />
+            <Route path="*" element={<div>404</div>} />
+          </Routes>
+        </div>
+      )}
     </>
   );
 }

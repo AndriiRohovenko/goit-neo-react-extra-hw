@@ -6,11 +6,23 @@ export const fetchUserInfoThunk = createAsyncThunk(
   'auth/fetchUserInfo',
   async (_, thunkAPI) => {
     try {
+      const authState = thunkAPI.getState().auth;
+      const localToken = authState.token;
+      console.log(localToken);
+      setToken(localToken);
       const data = await getUserInfo();
+
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
+  },
+  {
+    condition: (_, { getState }) => {
+      const authState = getState().auth;
+      const localToken = authState.token;
+      return localToken !== null;
+    },
   }
 );
 
