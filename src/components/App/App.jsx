@@ -15,6 +15,9 @@ const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
 );
 
+import RestrictedRoute from '../../quards/RestrictedRoute/RestrictedRoute';
+import PrivateRoute from '../../quards/PrivateRoute/PrivateRoute';
+
 function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -30,9 +33,18 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/contacts" element={<ContactsPage />} />
+            <Route
+              path="/login"
+              element={<RestrictedRoute component={<LoginPage />} />}
+            />
+            <Route
+              path="/register"
+              element={<RestrictedRoute component={<RegistrationPage />} />}
+            />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute component={<ContactsPage />} />}
+            />
             <Route path="*" element={<div>404</div>} />
           </Routes>
         </div>

@@ -5,6 +5,7 @@ import {
   deleteContactThunk,
 } from './contactsOps';
 import { selectNameFilter } from '../filtersSlice';
+import { logOutActionThunk } from '../auth/authOps';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -45,7 +46,11 @@ const contactsSlice = createSlice({
         const index = state.items.findIndex(task => task.id === action.payload);
         state.items.splice(index, 1);
       })
-      .addCase(deleteContactThunk.rejected, handleRejected);
+      .addCase(deleteContactThunk.rejected, handleRejected)
+
+      .addCase(logOutActionThunk.fulfilled, state => {
+        state.items = [];
+      });
   },
 });
 
