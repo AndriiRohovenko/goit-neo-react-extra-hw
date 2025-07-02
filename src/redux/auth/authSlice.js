@@ -71,7 +71,12 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isRefreshing = false;
       })
-      .addCase(fetchUserInfoThunk.rejected, handleRejected);
+      .addCase(fetchUserInfoThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+        state.isRefreshing = false;
+        state.token = null;
+      });
   },
 });
 
