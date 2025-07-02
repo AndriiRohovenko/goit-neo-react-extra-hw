@@ -22,6 +22,11 @@
   /* margin: 0 auto; */
 }
 
+.leftNavigationWrapper {
+  display: flex;
+  gap: 20px;
+}
+
 .rightNavigationWrapper {
   display: flex;
   gap: 20px;

@@ -11,25 +11,31 @@ function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.navigationWrapper}>
-          <NavLink
-            to={'/'}
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-            }
-          >
-            Home
-          </NavLink>
-          {isLoggedIn && (
+          <div className={styles.leftNavigationWrapper}>
             <NavLink
-              to={'/contacts'}
+              to={'/'}
               className={({ isActive }) =>
                 isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
               }
             >
-              Contacts
+              Home
             </NavLink>
-          )}
-          {isLoggedIn ? <UserInfo /> : <Authorization />}
+            {isLoggedIn && (
+              <NavLink
+                to={'/contacts'}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLink} ${styles.active}`
+                    : styles.navLink
+                }
+              >
+                Contacts
+              </NavLink>
+            )}
+          </div>
+          <div className={styles.rightNavigationWrapper}>
+            {isLoggedIn ? <UserInfo /> : <Authorization />}
+          </div>
         </div>
       </header>
     </>
