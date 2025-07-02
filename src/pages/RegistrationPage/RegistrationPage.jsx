@@ -2,16 +2,23 @@ import styles from './RegistrationPage.module.css';
 
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { signUpActionThunk } from '../../redux/auth/authOps';
+import { selectIsAuthError, resetError } from '../../redux/auth/authSlice';
+import { useEffect } from 'react';
 
 const RegistrationPage = () => {
   const dispatch = useDispatch();
+  const isAuthError = useSelector(selectIsAuthError);
   const defaultObj = { name: '', email: '', password: '' };
   const nameFieldId = useId();
   const emailFieldId = useId();
   const passwordFieldId = useId();
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, [dispatch]);
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -76,6 +83,11 @@ const RegistrationPage = () => {
               component="span"
             />
           </div>
+          {isAuthError && (
+            <div className={styles.error}>
+              Sign Up error, please try with another email and password.
+            </div>
+          )}
           <button className={styles.SignUpBtn} type="submit">
             Sign Up
           </button>

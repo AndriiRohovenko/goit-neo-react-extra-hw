@@ -29,6 +29,11 @@ const authSlice = createSlice({
     error: null,
     isRefreshing: false,
   },
+  reducers: {
+    resetError: state => {
+      state.error = null;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(signUpActionThunk.pending, handlePending)
@@ -81,7 +86,9 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { resetError } = authSlice.actions;
 
 export const selectLoggedIn = state => state.auth.isLoggedIn;
 export const selectUser = state => state.auth.user;
 export const selectIsRefreshing = state => state.auth.isRefreshing;
+export const selectIsAuthError = state => state.auth.error;

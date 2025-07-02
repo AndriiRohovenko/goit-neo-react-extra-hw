@@ -4,14 +4,21 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import * as Yup from 'yup';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginActionThunk } from '../../redux/auth/authOps';
+import { selectIsAuthError, resetError } from '../../redux/auth/authSlice';
+import { useEffect } from 'react';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const isAuthError = useSelector(selectIsAuthError);
   const defaultObj = { email: '', password: '' };
   const emailFieldId = useId();
   const passwordFieldId = useId();
+
+  useEffect(() => {
+    dispatch(resetError());
+  }, [dispatch]);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -23,9 +30,9 @@ const LoginPage = () => {
     password: Yup.string().required('Password is required'),
   });
 
-  const handleLogin = (user, { resetForm }) => {
+  const handleLogin = user => {
     dispatch(loginActionThunk(user));
-    resetForm();
+    // resetForm();
   };
 
   return (
@@ -54,6 +61,11 @@ const LoginPage = () => {
               component="span"
             />
           </div>
+          {isAuthError && (
+            <div className={styles.error}>
+              Login error, please try with valid email and password.
+            </div>
+          )}
           <button className={styles.LoginBtn} type="submit">
             Login
           </button>
