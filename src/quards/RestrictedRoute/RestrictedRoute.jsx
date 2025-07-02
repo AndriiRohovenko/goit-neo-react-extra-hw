@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectLoggedIn } from '../../redux/auth/authSlice';
+import { selectLoggedIn } from '../../redux/auth/slice';
 import { Navigate } from 'react-router-dom';
 
 const RestrictedRoute = ({

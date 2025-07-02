@@ -5,8 +5,8 @@ import { useId } from 'react';
 import * as Yup from 'yup';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { loginActionThunk } from '../../redux/auth/authOps';
-import { selectIsAuthError, resetError } from '../../redux/auth/authSlice';
+import { loginActionThunk } from '../../redux/auth/operations';
+import { selectIsAuthError, resetError } from '../../redux/auth/slice';
 import { useEffect } from 'react';
 
 const LoginPage = () => {

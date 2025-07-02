@@ -5,7 +5,7 @@ import {
   loginActionThunk,
   signUpActionThunk,
   logOutActionThunk,
-} from './authOps';
+} from './operations';
 
 const handlePending = state => {
   state.isLoading = true;

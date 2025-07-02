@@ -1,8 +1,8 @@
 import styles from './UserInfo.module.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../redux/auth/authSlice';
-import { logOutActionThunk } from '../../redux/auth/authOps';
+import { selectUser } from '../../redux/auth/slice';
+import { logOutActionThunk } from '../../redux/auth/operations';
 
 function UserInfo() {
   const user = useSelector(selectUser);

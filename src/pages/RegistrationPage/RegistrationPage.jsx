@@ -4,8 +4,8 @@ import { Form, Formik, Field, ErrorMessage } from 'formik';
 import { useId } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import { signUpActionThunk } from '../../redux/auth/authOps';
-import { selectIsAuthError, resetError } from '../../redux/auth/authSlice';
+import { signUpActionThunk } from '../../redux/auth/operations';
+import { selectIsAuthError, resetError } from '../../redux/auth/slice';
 import { useEffect } from 'react';
 
 const RegistrationPage = () => {

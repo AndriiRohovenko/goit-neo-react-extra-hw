@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectLoggedIn } from '../../redux/auth/authSlice';
+import { selectLoggedIn } from '../../redux/auth/slice';
 import UserInfo from '../UserInfo/UserInfo';
 import Authorization from '../Authorization/Authorization';
 

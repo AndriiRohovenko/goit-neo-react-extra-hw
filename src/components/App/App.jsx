@@ -6,8 +6,8 @@ import ContactsPage from '../../pages/ContactsPage/ContactsPage';
 import { lazy, Suspense, useEffect } from 'react';
 import Header from '../Header/Header';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserInfoThunk } from '../../redux/auth/authOps';
-import { selectIsRefreshing } from '../../redux/auth/authSlice';
+import { fetchUserInfoThunk } from '../../redux/auth/operations';
+import { selectIsRefreshing } from '../../redux/auth/slice';
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));

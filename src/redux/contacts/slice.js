@@ -3,9 +3,9 @@ import {
   fetchContactsThunk,
   addContactThunk,
   deleteContactThunk,
-} from './contactsOps';
-import { selectNameFilter } from '../filters/filtersSlice';
-import { logOutActionThunk } from '../auth/authOps';
+} from './operations';
+import { selectNameFilter } from '../filters/slice';
+import { logOutActionThunk } from '../auth/operations';
 
 const handlePending = state => {
   state.isLoading = true;
